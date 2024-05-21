@@ -7,67 +7,7 @@
 void PrintElem(SElemType e) {
     printf("%d ", e);
 }
-/*
-void testLinkQueue() {
-    printf("\nTesting LinkQueue...\n");
-    LinkQueue lq;
-    LinkInitQueue(&lq);
-    printf("Queue initialized.\n");
 
-    printf("Enqueue elements 1, 2, 3...\n");
-    for(QElemType i = 1; i <= 3; i++) {
-        LinkEnQueue(&lq, i);
-    }
-
-    QElemType elem;
-    LinkGetHead(lq, &elem);
-    printf("The head of the queue: %d\n", elem);
-
-    printf("Queue Length: %d\n", LinkQueueLength(lq));
-
-    printf("Dequeue elements...\n");
-    while(!LinkQueueEmpty(lq)) {
-        LinkDeQueue(&lq, &elem);
-        printf("%d dequeued\n", elem);
-    }
-
-    // Assuming there's a LinkClearQueue to clear the queue.
-    LinkClearQueue(&lq);
-    printf("Queue cleared. Is empty: %s\n", LinkQueueEmpty(lq) ? "Yes" : "No");
-
-    // If there's a LinkDestroyQueue, it would go here.
-}
-
-void testSqQueue() {
-    printf("\nTesting SqQueue...\n");
-    SqQueue sq;
-    SqInitQueue(&sq);
-    printf("Queue initialized.\n");
-
-    printf("Enqueue elements 4, 5, 6...\n");
-    for(QElemType i = 4; i <= 6; i++) {
-        SqEnQueue(&sq, i);
-    }
-
-    QElemType elem;
-    SqGetHead(sq, &elem);
-    printf("The head of the queue: %d\n", elem);
-
-    printf("Queue Length: %d\n", SqQueueLength(sq));
-
-    printf("Dequeue elements...\n");
-    while(!SqQueueEmpty(sq)) {
-        SqDeQueue(&sq, &elem);
-        printf("%d dequeued\n", elem);
-    }
-
-    // Assuming there's a SqClearQueue to clear the queue.
-    SqClearQueue(&sq);
-    printf("Queue cleared. Is empty: %s\n", SqQueueEmpty(sq) ? "Yes" : "No");
-
-    // If there's a SqDestroyQueue, it would go here.
-}
-*/
 int main(int argc, char** argv) {
     SqStack ss;
 	LinkQueue lq;
