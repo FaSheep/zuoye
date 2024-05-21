@@ -36,14 +36,29 @@ Status LinkClearQueue(LinkQueue* Q) {
 }
 
 Status LinkEnQueue(LinkQueue* Q, QElemType e) {
-    QueuePtr p = (QueuePtr) malloc(sizeof(QNode));
-    if (!p) { // Check memory allocation
-        exit(OVERFLOW);     
+    QueuePtr p;
+    if(Q == NULL || (*Q).front == NULL) {
+        return ERROR;
     }
-    p->data = e; // Set the data part
-    p->next = NULL; // Set the next part to NULL
-    Q->rear->next = p; // Insert the new node into the queue
-    Q->rear = p; // Update the rear pointer
+    
+    p = (QueuePtr) malloc(sizeof(QNode));
+    if(!p) {
+        exit(OVERFLOW);
+    }
+
+    p->data = e; // Set the data of the new node
+    p->next = NULL; // The new node will be the last node, so its next pointer is NULL
+    
+    // If the queue is empty, insert the new node after the front
+    if((*Q).rear == (*Q).front) {
+        (*Q).front->next = p;
+    } else {
+        // Otherwise, insert it after the current last node
+        (*Q).rear->next = p;
+    }
+    
+    // Update the rear pointer of the queue
+    (*Q).rear = p;
     return OK;
 }
 
@@ -61,4 +76,23 @@ Status LinkDeQueue(LinkQueue* Q, QElemType* e) {
     return OK;
 }
 
+Status LinkGetHead(LinkQueue Q, QElemType* e) {
+    if(Q.front == Q.rear) return ERROR; // Queue is empty
+    *e = Q.front->next->data;
+    return OK;
+}
+
+int LinkQueueLength(LinkQueue Q) {
+    int count = 0;
+    QueuePtr p = Q.front;
+    while(p->next) {
+        count++;
+        p = p->next;
+    }
+    return count;
+}
+
+Status LinkQueueEmpty(LinkQueue Q) {
+    return (Q.front == Q.rear) ? EMPTY : FALSE;
+}
 // Implement GetHead and other operations as per your requirement.

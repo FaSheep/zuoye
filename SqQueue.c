@@ -34,4 +34,18 @@ Status SqDeQueue(SqQueue* Q, QElemType* e) {
     return OK;
 }
 
+Status SqGetHead(SqQueue Q, QElemType* e) {
+    if(Q.front == Q.rear) return ERROR; // Queue is empty
+    *e = Q.base[Q.front];
+    return OK;
+}
+
+Status SqQueueEmpty(SqQueue Q) {
+    return (Q.front == Q.rear) ? TRUE : FALSE;
+}
+
+Status SqClearQueue(SqQueue* Q) {
+    Q->front = Q->rear = 0;
+    return OK;
+}
 // Implement GetHead, DestroyQueue, ClearQueue, QueueEmpty, and QueueTraverse as per your requirement.
