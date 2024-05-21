@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "SqStack.h"    //**¡ø03 Õ»ºÍ¶ÓÁĞ**//
+#include "SqStack.h"    //**â–²03 æ ˆå’Œé˜Ÿåˆ—**//
 
-// ²âÊÔº¯Êı£¬´òÓ¡ÔªËØ
+// æµ‹è¯•å‡½æ•°ï¼Œæ‰“å°å…ƒç´ 
 void PrintElem(SElemType e) {
     printf("%d ", e);
 }
@@ -15,73 +15,73 @@ int main(int argc, char** argv) {
     int i;
     SElemType e;
     
-    printf("¨€¨€¨€¨€¨€¨€¨€¨€ Ë³ĞòÕ»º¯Êı InitStack \n");
+    printf("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ é¡ºåºæ ˆå‡½æ•° InitStack \n");
     {
-        printf("¨€ ³õÊ¼»¯Ë³ĞòÕ» ss ...\n");
+        printf("â–ˆ åˆå§‹åŒ–é¡ºåºæ ˆ ss ...\n");
         InitStack(&ss);
     }
     
-    printf("¨€¨€¨€¨€¨€¨€¨€¨€ Ë³ĞòÕ»º¯Êı StackEmpty \n");
+    printf("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ é¡ºåºæ ˆå‡½æ•° StackEmpty \n");
     {
-        StackEmpty(ss) ? printf("¨€ ss Îª¿Õ£¡£¡\n") : printf("¨€ ss ²»Îª¿Õ£¡\n");
+        StackEmpty(ss) ? printf("â–ˆ ss ä¸ºç©ºï¼ï¼\n") : printf("â–ˆ ss ä¸ä¸ºç©ºï¼\n");
     }
     
-    printf("¨€¨€¨€¨€¨€¨€¨€¨€ Ë³ĞòÕ»º¯Êı Push \n");
+    printf("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ é¡ºåºæ ˆå‡½æ•° Push \n");
     {
         for(i = 1; i <= 6; i++) {
             Push(&ss, 2 * i);
-            printf("¨€ ½« \"%2d\" Ñ¹ÈëÕ» ss ...\n", 2 * i);
+            printf("â–ˆ å°† \"%2d\" å‹å…¥æ ˆ ss ...\n", 2 * i);
         }
     }
     
-    printf("¨€¨€¨€¨€¨€¨€¨€¨€ Ë³ĞòÕ»º¯Êı StackTraverse \n");
+    printf("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ é¡ºåºæ ˆå‡½æ•° StackTraverse \n");
     {
-        printf("¨€ ss ÖĞµÄÔªËØÎª£ºss = ");
+        printf("â–ˆ ss ä¸­çš„å…ƒç´ ä¸ºï¼šss = ");
         StackTraverse(ss, PrintElem);
     }
     
-    printf("¨€¨€¨€¨€¨€¨€¨€¨€ Ë³ĞòÕ»º¯Êı StackLength \n");
+    printf("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ é¡ºåºæ ˆå‡½æ•° StackLength \n");
     {
         i = StackLength(ss);
-        printf("¨€ ss µÄ³¤¶ÈÎª %d \n", i);
+        printf("â–ˆ ss çš„é•¿åº¦ä¸º %d \n", i);
     }
     
-    printf("¨€¨€¨€¨€¨€¨€¨€¨€ Ë³ĞòÕ»º¯Êı Pop \n");
+    printf("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ é¡ºåºæ ˆå‡½æ•° Pop \n");
     {
         Pop(&ss, &e);
-        printf("¨€ Õ»¶¥ÔªËØ \"%d\" ³öÕ»...\n", e);
-        printf("¨€ ss ÖĞµÄÔªËØÎª£ºss = ");
+        printf("â–ˆ æ ˆé¡¶å…ƒç´  \"%d\" å‡ºæ ˆ...\n", e);
+        printf("â–ˆ ss ä¸­çš„å…ƒç´ ä¸ºï¼šss = ");
         StackTraverse(ss, PrintElem);
     }
     
-    printf("¨€¨€¨€¨€¨€¨€¨€¨€ Ë³ĞòÕ»º¯Êı GetTop \n");
+    printf("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ é¡ºåºæ ˆå‡½æ•° GetTop \n");
     {
         GetTop(ss, &e);
-        printf("¨€ Õ»¶¥ÔªËØµÄÖµÎª \"%d\" \n", e);
+        printf("â–ˆ æ ˆé¡¶å…ƒç´ çš„å€¼ä¸º \"%d\" \n", e);
     }
     
-    printf("¨€¨€¨€¨€¨€¨€¨€¨€ Ë³ĞòÕ»º¯Êı ClearStack \n");
+    printf("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ é¡ºåºæ ˆå‡½æ•° ClearStack \n");
     {
-        printf("¨€ Çå¿Õ ss Ç°£º");
-        StackEmpty(ss) ? printf(" ss Îª¿Õ£¡£¡\n") : printf(" ss ²»Îª¿Õ£¡\n");
+        printf("â–ˆ æ¸…ç©º ss å‰ï¼š");
+        StackEmpty(ss) ? printf(" ss ä¸ºç©ºï¼ï¼\n") : printf(" ss ä¸ä¸ºç©ºï¼\n");
         
         ClearStack(&ss);
         
-        printf("¨€ Çå¿Õ ss ºó£º");
-        StackEmpty(ss) ? printf(" ss Îª¿Õ£¡£¡\n") : printf(" ss ²»Îª¿Õ£¡\n");
+        printf("â–ˆ æ¸…ç©º ss åï¼š");
+        StackEmpty(ss) ? printf(" ss ä¸ºç©ºï¼ï¼\n") : printf(" ss ä¸ä¸ºç©ºï¼\n");
     }
     
-    printf("¨€¨€¨€¨€¨€¨€¨€¨€ Ë³ĞòÕ»º¯Êı DestroyStack \n");
+    printf("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ é¡ºåºæ ˆå‡½æ•° DestroyStack \n");
     {
-        printf("¨€ Ïú»Ù ss Ç°£º");
-        ss.base != NULL && ss.top != NULL ? printf(" ss ´æÔÚ£¡\n") : printf(" ss ²»´æÔÚ£¡£¡\n");
+        printf("â–ˆ é”€æ¯ ss å‰ï¼š");
+        ss.base != NULL && ss.top != NULL ? printf(" ss å­˜åœ¨ï¼\n") : printf(" ss ä¸å­˜åœ¨ï¼ï¼\n");
         
         DestroyStack(&ss);
         
-        printf("¨€ Ïú»Ù ss ºó£º");
-        ss.base != NULL && ss.top != NULL ? printf(" ss ´æÔÚ£¡\n") : printf(" ss ²»´æÔÚ£¡£¡\n");
+        printf("â–ˆ é”€æ¯ ss åï¼š");
+        ss.base != NULL && ss.top != NULL ? printf(" ss å­˜åœ¨ï¼\n") : printf(" ss ä¸å­˜åœ¨ï¼ï¼\n");
     }
     
-	//ÆäËûÁ½¸öADTµÄº¯Êı£¨×Ô¼ºÓĞ²¹³ä´úÂëµÄº¯Êı£©Ò²°´ÕÕÀàËÆ·½·¨½øĞĞ²âÊÔ
+	//å…¶ä»–ä¸¤ä¸ªADTçš„å‡½æ•°ï¼ˆè‡ªå·±æœ‰è¡¥å……ä»£ç çš„å‡½æ•°ï¼‰ä¹ŸæŒ‰ç…§ç±»ä¼¼æ–¹æ³•è¿›è¡Œæµ‹è¯•
     return 0;
 }

@@ -1,94 +1,94 @@
 /*=============================
- * ���е�˳��洢�ṹ��˳����У�
+ * 队列的顺序存储结构（顺序队列）
  ==============================*/
 
 #include <stdio.h>
 #include <stdlib.h>       
 #include "Common.h" 
 
-/* �궨�� */
-#define MAXQSIZE 1000   //�����г���
+/* 宏定义 */
+#define MAXQSIZE 1000   //最大队列长度
 
-/* ѭ������Ԫ�����Ͷ��� */
+/* 循环队列元素类型定义 */
 typedef int QElemType;
 
-// ѭ�����е�˳��洢�ṹ
+// 循环队列的顺序存储结构
 typedef struct {
-    QElemType* base;    // ��̬����洢�ռ�
-    int front;          // ͷָ�룬�����в��գ�ָ���ͷԪ��
-    int rear;           // βָ�룬�����в��գ�ָ�����βԪ�ص���һ��λ��
+    QElemType* base;    // 动态分配存储空间
+    int front;          // 头指针，若队列不空，指向队头元素
+    int rear;           // 尾指针，若队列不空，指向队列尾元素的下一个位置
 } SqQueue;
 
 
 /*
- * ��ʼ��
+ * 初始化
  *
- * ����һ���յ�˳����С�
- * ��ʼ���ɹ��򷵻�OK�����򷵻�ERROR��
+ * 构造一个空的顺序队列。
+ * 初始化成功则返回OK，否则返回ERROR。
  *
- *��ע��
- * ����Ķ�����ѭ������
+ *【注】
+ * 这里的队列是循环队列
  */
 Status InitQueue(SqQueue* Q);
 
 /*
- * ����(�ṹ)
+ * 销毁(结构)
  *
- * �ͷ�ѭ��˳�������ռ�ڴ档
+ * 释放循环顺序队列所占内存。
  */
 Status DestroyQueue(SqQueue* Q);
 
 /*
- * �ÿ�(����)
+ * 置空(内容)
  *
- * ֻ������ѭ��˳������д洢�����ݣ����ͷ�˳�������ռ�ڴ档
+ * 只是清理循环顺序队列中存储的数据，不释放顺序队列所占内存。
  */
 Status ClearQueue(SqQueue* Q);
 
 /*
- * �п�
+ * 判空
  *
- * �ж�ѭ��˳��������Ƿ������Ч���ݡ�
+ * 判断循环顺序队列中是否包含有效数据。
  *
- * ����ֵ��
- * TRUE : ѭ��˳�����Ϊ��
- * FALSE: ѭ��˳����в�Ϊ��
+ * 返回值：
+ * TRUE : 循环顺序队列为空
+ * FALSE: 循环顺序队列不为空
  */
 Status QueueEmpty(SqQueue Q);
 
 /*
- * ����
+ * 计数
  *
- * ����ѭ��˳����а�������ЧԪ�ص�������
+ * 返回循环顺序队列包含的有效元素的数量。
  */
 int QueueLength(SqQueue Q);
 
 /*
- * ȡֵ
+ * 取值
  *
- * ��ȡ��ͷԪ�أ�����洢��e�С�
- * ��������ҵ�������OK�����򣬷���ERROR��
+ * 获取队头元素，将其存储到e中。
+ * 如果可以找到，返回OK，否则，返回ERROR。
  */
 Status GetHead(SqQueue Q, QElemType* e);
 
 /*
- * ���
+ * 入队
  *
- * ��Ԫ��e���ӵ�����β����
+ * 将元素e添加到队列尾部。
  */
 Status EnQueue(SqQueue* Q, QElemType e);
 
 /*
- * ����
+ * 出队
  *
- * �Ƴ�����ͷ����Ԫ�أ�����洢��e�С�
+ * 移除队列头部的元素，将其存储到e中。
  */
 Status DeQueue(SqQueue* Q, QElemType* e);
 
 /*
- * ����
+ * 遍历
  *
- * ��visit�������ʶ���Q
+ * 用visit函数访问队列Q
  */
 Status QueueTraverse(SqQueue Q, void(Visit)(QElemType));
 

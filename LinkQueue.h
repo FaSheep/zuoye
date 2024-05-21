@@ -1,5 +1,5 @@
 /*=========================
- * ���е���ʽ�洢�ṹ�����ӣ�
+ * 队列的链式存储结构（链队）
  ==========================*/
 
 
@@ -7,91 +7,91 @@
 #include <stdlib.h>     
 #include "Common.h"   
 
-/* ����Ԫ�����Ͷ��� */
+/* 链队元素类型定义 */
 typedef int QElemType;
 
-// ����Ԫ�ؽṹ
+// 队列元素结构
 typedef struct QNode {
     QElemType data;
     struct QNode* next;
 } QNode, * QueuePtr;
 
-// ���нṹ
+// 队列结构
 typedef struct {
-    QueuePtr front;     // ��ͷָ��
-    QueuePtr rear;      // ��βָ��
-} LinkQueue;            // ���е���ʽ�洢��ʾ
+    QueuePtr front;     // 队头指针
+    QueuePtr rear;      // 队尾指针
+} LinkQueue;            // 队列的链式存储表示
 
 
 /*
- * ��ʼ��
+ * 初始化
  *
- * ����һ���յ����ӡ�
- * ��ʼ���ɹ��򷵻�OK�����򷵻�ERROR��
+ * 构造一个空的链队。
+ * 初始化成功则返回OK，否则返回ERROR。
  *
- *��ע��
- * ����Ķ��д���ͷ���
+ *【注】
+ * 这里的队列带有头结点
  */
 Status InitQueue(LinkQueue* Q);
 
 /*
- * ����(�ṹ)
+ * 销毁(结构)
  *
- * �ͷ�������ռ�ڴ档
+ * 释放链队所占内存。
  */
 Status DestroyQueue(LinkQueue* Q);
 
 /*
- * �ÿ�(����)
+ * 置空(内容)
  *
- * ������Ҫ�ͷ������з�ͷ��㴦�Ŀռ䡣
+ * 这里需要释放链队中非头结点处的空间。
  */
 Status ClearQueue(LinkQueue* Q);
 
 /*
- * �п�
+ * 判空
  *
- * �ж��������Ƿ������Ч���ݡ�
+ * 判断链队中是否包含有效数据。
  *
- * ����ֵ��
- * TRUE : ����Ϊ��
- * FALSE: ���Ӳ�Ϊ��
+ * 返回值：
+ * TRUE : 链队为空
+ * FALSE: 链队不为空
  */
 Status QueueEmpty(LinkQueue Q);
 
 /*
- * ����
+ * 计数
  *
- * �������Ӱ�������ЧԪ�ص�������
+ * 返回链队包含的有效元素的数量。
  */
 int QueueLength(LinkQueue Q);
 
 /*
- * ȡֵ
+ * 取值
  *
- * ��ȡ��ͷԪ�أ�����洢��e�С�
- * ��������ҵ�������OK�����򣬷���ERROR��
+ * 获取队头元素，将其存储到e中。
+ * 如果可以找到，返回OK，否则，返回ERROR。
  */
 Status GetHead(LinkQueue Q, QElemType* e);
 
 /*
- * ���
+ * 入队
  *
- * ��Ԫ��e���ӵ�����β����
+ * 将元素e添加到队列尾部。
  */
 Status EnQueue(LinkQueue* Q, QElemType e);
 
 /*
- * ����
+ * 出队
  *
- * �Ƴ�����ͷ����Ԫ�أ�����洢��e�С�
+ * 移除队列头部的元素，将其存储到e中。
  */
 Status DeQueue(LinkQueue* Q, QElemType* e);
 
 /*
- * ����
+ * 遍历
  *
- * ��visit�������ʶ���Q
+ * 用visit函数访问队列Q
  */
 Status QueueTraverse(LinkQueue Q, void(Visit)(QElemType));
 

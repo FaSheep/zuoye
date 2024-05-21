@@ -1,90 +1,90 @@
 /*=========================
- * ջ��˳��洢�ṹ��˳��ջ��
+ * 栈的顺序存储结构（顺序栈）
  ==========================*/
 
 #include <stdio.h>
 #include <stdlib.h>     
 #include "Common.h"     
 
-/* �궨�� */
-#define STACK_INIT_SIZE 100     // ˳��ջ�洢�ռ�ĳ�ʼ������
-#define STACKINCREMENT  10      // ˳��ջ�洢�ռ�ķ�������
+/* 宏定义 */
+#define STACK_INIT_SIZE 100     // 顺序栈存储空间的初始分配量
+#define STACKINCREMENT  10      // 顺序栈存储空间的分配增量
 
-/* ˳��ջԪ�����Ͷ��� */
+/* 顺序栈元素类型定义 */
 typedef int SElemType;
 
-// ˳��ջԪ�ؽṹ
+// 顺序栈元素结构
 typedef struct {
-    SElemType* base;               // ջ��ָ��
-    SElemType* top;                // ջ��ָ��
-    int stacksize;                 // ��ǰ�ѷ���Ĵ洢�ռ䣬��Ԫ��Ϊ��λ
+    SElemType* base;               // 栈底指针
+    SElemType* top;                // 栈顶指针
+    int stacksize;                 // 当前已分配的存储空间，以元素为单位
 } SqStack;
 
 
 /*
- * ��ʼ��
+ * 初始化
  *
- * ����һ����ջ����ʼ���ɹ��򷵻�OK�����򷵻�ERROR��
+ * 构造一个空栈。初始化成功则返回OK，否则返回ERROR。
  */
 Status InitStack(SqStack* S);
 
 /*
- * ����(�ṹ)
+ * 销毁(结构)
  *
- * �ͷ�˳��ջ��ռ�ڴ档
+ * 释放顺序栈所占内存。
  */
 Status DestroyStack(SqStack* S);
 
 /*
- * �ÿ�(����)
+ * 置空(内容)
  *
- * ֻ������˳��ջ�д洢�����ݣ����ͷ�˳��ջ��ռ�ڴ档
+ * 只是清理顺序栈中存储的数据，不释放顺序栈所占内存。
  */
 Status ClearStack(SqStack* S);
 
 /*
- * �п�
+ * 判空
  *
- * �ж�˳��ջ���Ƿ������Ч���ݡ�
+ * 判断顺序栈中是否包含有效数据。
  *
- * ����ֵ��
- * TRUE : ˳��ջΪ��
- * FALSE: ˳��ջ��Ϊ��
+ * 返回值：
+ * TRUE : 顺序栈为空
+ * FALSE: 顺序栈不为空
  */
 Status StackEmpty(SqStack S);
 
 /*
- * ����
+ * 计数
  *
- * ����˳��ջ��������ЧԪ�ص�������
+ * 返回顺序栈包含的有效元素的数量。
  */
 int StackLength(SqStack S);
 
 /*
- * ȡֵ
+ * 取值
  *
- * ����ջ��Ԫ�أ�����e���ա�
+ * 返回栈顶元素，并用e接收。
  */
 Status GetTop(SqStack S, SElemType* e);
 
 /*
- * ��ջ
+ * 入栈
  *
- * ��Ԫ��eѹ�뵽ջ����
+ * 将元素e压入到栈顶。
  */
 Status Push(SqStack* S, SElemType e);
 
 /*
- * ��ջ
+ * 出栈
  *
- * ��ջ��Ԫ�ص���������e���ա�
+ * 将栈顶元素弹出，并用e接收。
  */
 Status Pop(SqStack* S, SElemType* e);
 
 /*
- * ����
+ * 遍历
  *
- * ��visit��������˳��ջS
+ * 用visit函数访问顺序栈S
  */
 Status StackTraverse(SqStack S, void(Visit)(SElemType));
 

@@ -1,17 +1,17 @@
 /*=========================
- * ¶ÓÁĞµÄÁ´Ê½´æ´¢½á¹¹£¨Á´¶Ó£©
+ * é˜Ÿåˆ—çš„é“¾å¼å­˜å‚¨ç»“æ„ï¼ˆé“¾é˜Ÿï¼‰
  ==========================*/
 
 
 #include "LinkQueue.h"                   
 /*
- * ³õÊ¼»¯
+ * åˆå§‹åŒ–
  *
- * ¹¹ÔìÒ»¸ö¿ÕµÄÁ´¶Ó¡£
- * ³õÊ¼»¯³É¹¦Ôò·µ»ØOK£¬·ñÔò·µ»ØERROR¡£
+ * æ„é€ ä¸€ä¸ªç©ºçš„é“¾é˜Ÿã€‚
+ * åˆå§‹åŒ–æˆåŠŸåˆ™è¿”å›OKï¼Œå¦åˆ™è¿”å›ERRORã€‚
  *
- *¡¾×¢¡¿
- * ÕâÀïµÄ¶ÓÁĞ´øÓĞÍ·½áµã
+ *ã€æ³¨ã€‘
+ * è¿™é‡Œçš„é˜Ÿåˆ—å¸¦æœ‰å¤´ç»“ç‚¹
  */
 Status InitQueue(LinkQueue* Q) {
     if(Q == NULL) {
@@ -23,29 +23,29 @@ Status InitQueue(LinkQueue* Q) {
         exit(OVERFLOW);
     }
     
-    //²¹³ä´úÂë    
+    //è¡¥å……ä»£ç     
     return OK;
 }
 
 /*
- * Ïú»Ù(½á¹¹)
+ * é”€æ¯(ç»“æ„)
  *
- * ÊÍ·ÅÁ´¶ÓËùÕ¼ÄÚ´æ¡£
+ * é‡Šæ”¾é“¾é˜Ÿæ‰€å å†…å­˜ã€‚
  */
 Status DestroyQueue(LinkQueue* Q) {
     if(Q == NULL) {
         return ERROR;
     }
     
-    //²¹³ä´úÂë 
+    //è¡¥å……ä»£ç  
 
     return OK;
 }
 
 /*
- * ÖÃ¿Õ(ÄÚÈİ)
+ * ç½®ç©º(å†…å®¹)
  *
- * ÕâÀïĞèÒªÊÍ·ÅÁ´¶ÓÖĞ·ÇÍ·½áµã´¦µÄ¿Õ¼ä¡£
+ * è¿™é‡Œéœ€è¦é‡Šæ”¾é“¾é˜Ÿä¸­éå¤´ç»“ç‚¹å¤„çš„ç©ºé—´ã€‚
  */
 Status ClearQueue(LinkQueue* Q) {
     if(Q == NULL) {
@@ -54,19 +54,19 @@ Status ClearQueue(LinkQueue* Q) {
     
     (*Q).rear = (*Q).front->next;
     
-	    //²¹³ä´úÂë 
+	    //è¡¥å……ä»£ç  
     
     return OK;
 }
 
 /*
- * ÅĞ¿Õ
+ * åˆ¤ç©º
  *
- * ÅĞ¶ÏÁ´¶ÓÖĞÊÇ·ñ°üº¬ÓĞĞ§Êı¾İ¡£
+ * åˆ¤æ–­é“¾é˜Ÿä¸­æ˜¯å¦åŒ…å«æœ‰æ•ˆæ•°æ®ã€‚
  *
- * ·µ»ØÖµ£º
- * TRUE : Á´¶ÓÎª¿Õ
- * FALSE: Á´¶Ó²»Îª¿Õ
+ * è¿”å›å€¼ï¼š
+ * TRUE : é“¾é˜Ÿä¸ºç©º
+ * FALSE: é“¾é˜Ÿä¸ä¸ºç©º
  */
 Status QueueEmpty(LinkQueue Q) {
     if(Q.front == Q.rear) {
@@ -77,9 +77,9 @@ Status QueueEmpty(LinkQueue Q) {
 }
 
 /*
- * ¼ÆÊı
+ * è®¡æ•°
  *
- * ·µ»ØÁ´¶Ó°üº¬µÄÓĞĞ§ÔªËØµÄÊıÁ¿¡£
+ * è¿”å›é“¾é˜ŸåŒ…å«çš„æœ‰æ•ˆå…ƒç´ çš„æ•°é‡ã€‚
  */
 int QueueLength(LinkQueue Q) {
     int count = 0;
@@ -94,10 +94,10 @@ int QueueLength(LinkQueue Q) {
 }
 
 /*
- * È¡Öµ
+ * å–å€¼
  *
- * »ñÈ¡¶ÓÍ·ÔªËØ£¬½«Æä´æ´¢µ½eÖĞ¡£
- * Èç¹û¿ÉÒÔÕÒµ½£¬·µ»ØOK£¬·ñÔò£¬·µ»ØERROR¡£
+ * è·å–é˜Ÿå¤´å…ƒç´ ï¼Œå°†å…¶å­˜å‚¨åˆ°eä¸­ã€‚
+ * å¦‚æœå¯ä»¥æ‰¾åˆ°ï¼Œè¿”å›OKï¼Œå¦åˆ™ï¼Œè¿”å›ERRORã€‚
  */
 Status GetHead(LinkQueue Q, QElemType* e) {
     QueuePtr p;
@@ -106,15 +106,15 @@ Status GetHead(LinkQueue Q, QElemType* e) {
         return ERROR;
     }
     
-//²¹³ä´úÂë 
+//è¡¥å……ä»£ç  
     
     return OK;
 }
 
 /*
- * Èë¶Ó
+ * å…¥é˜Ÿ
  *
- * ½«ÔªËØeÌí¼Óµ½¶ÓÁĞÎ²²¿¡£
+ * å°†å…ƒç´ eæ·»åŠ åˆ°é˜Ÿåˆ—å°¾éƒ¨ã€‚
  */
 Status EnQueue(LinkQueue* Q, QElemType e) {
     QueuePtr p;
@@ -128,15 +128,15 @@ Status EnQueue(LinkQueue* Q, QElemType e) {
         exit(OVERFLOW);
     }
     
-    //²¹³ä´úÂë 
+    //è¡¥å……ä»£ç  
     
     return OK;
 }
 
 /*
- * ³ö¶Ó
+ * å‡ºé˜Ÿ
  *
- * ÒÆ³ı¶ÓÁĞÍ·²¿µÄÔªËØ£¬½«Æä´æ´¢µ½eÖĞ¡£
+ * ç§»é™¤é˜Ÿåˆ—å¤´éƒ¨çš„å…ƒç´ ï¼Œå°†å…¶å­˜å‚¨åˆ°eä¸­ã€‚
  */
 Status DeQueue(LinkQueue* Q, QElemType* e) {
     QueuePtr p;
@@ -145,7 +145,7 @@ Status DeQueue(LinkQueue* Q, QElemType* e) {
         return ERROR;
     }
     
-	    //²¹³ä´úÂë 
+	    //è¡¥å……ä»£ç  
     
     free(p);
     
@@ -153,9 +153,9 @@ Status DeQueue(LinkQueue* Q, QElemType* e) {
 }
 
 /*
- * ±éÀú
+ * éå†
  *
- * ÓÃvisitº¯Êı·ÃÎÊ¶ÓÁĞQ
+ * ç”¨visitå‡½æ•°è®¿é—®é˜Ÿåˆ—Q
  */
 Status QueueTraverse(LinkQueue Q, void (Visit)(QElemType)) {
     QueuePtr p;

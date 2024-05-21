@@ -1,17 +1,17 @@
 /*=============================
- * ���е�˳��洢�ṹ��˳����У�
+ * 队列的顺序存储结构（顺序队列）
  ==============================*/
 
 #include "SqQueue.h"                
 
 /*
- * ��ʼ��
+ * 初始化
  *
- * ����һ���յ�˳����С�
- * ��ʼ���ɹ��򷵻�OK�����򷵻�ERROR��
+ * 构造一个空的顺序队列。
+ * 初始化成功则返回OK，否则返回ERROR。
  *
- *��ע��
- * ����Ķ�����ѭ������
+ *【注】
+ * 这里的队列是循环队列
  */
 Status InitQueue(SqQueue* Q) {
     if(Q == NULL) {
@@ -23,15 +23,15 @@ Status InitQueue(SqQueue* Q) {
         exit(OVERFLOW);
     }
     
-    //�������
+    //补充代码
     
     return OK;
 }
 
 /*
- * ����(�ṹ)
+ * 销毁(结构)
  *
- * �ͷ�ѭ��˳�������ռ�ڴ档
+ * 释放循环顺序队列所占内存。
  */
 Status DestroyQueue(SqQueue* Q) {
     if(Q == NULL) {
@@ -42,15 +42,15 @@ Status DestroyQueue(SqQueue* Q) {
         free((*Q).base);
     }
     
-//�������
+//补充代码
     
     return ERROR;
 }
 
 /*
- * �ÿ�(����)
+ * 置空(内容)
  *
- * ֻ������ѭ��˳������д洢�����ݣ����ͷ�˳�������ռ�ڴ档
+ * 只是清理循环顺序队列中存储的数据，不释放顺序队列所占内存。
  */
 Status ClearQueue(SqQueue* Q) {
     if(Q == NULL || (*Q).base == NULL) {
@@ -63,16 +63,16 @@ Status ClearQueue(SqQueue* Q) {
 }
 
 /*
- * �п�
+ * 判空
  *
- * �ж�ѭ��˳��������Ƿ������Ч���ݡ�
+ * 判断循环顺序队列中是否包含有效数据。
  *
- * ����ֵ��
- * TRUE : ѭ��˳�����Ϊ��
- * FALSE: ѭ��˳����в�Ϊ��
+ * 返回值：
+ * TRUE : 循环顺序队列为空
+ * FALSE: 循环顺序队列不为空
  */
 Status QueueEmpty(SqQueue Q) {
-    // ���пյı�־
+    // 队列空的标志
     if(Q.front == Q.rear) {
         return TRUE;
     } else {
@@ -81,27 +81,27 @@ Status QueueEmpty(SqQueue Q) {
 }
 
 /*
- * ����
+ * 计数
  *
- * ����ѭ��˳����а�������ЧԪ�ص�������
+ * 返回循环顺序队列包含的有效元素的数量。
  */
 int QueueLength(SqQueue Q) {
     if(Q.base == NULL) {
         return 0;
     }
     
-    // ���г���
-     //�������
+    // 队列长度
+     //补充代码
 }
 
 /*
- * ȡֵ
+ * 取值
  *
- * ��ȡ��ͷԪ�أ�����洢��e�С�
- * ��������ҵ�������OK�����򣬷���ERROR��
+ * 获取队头元素，将其存储到e中。
+ * 如果可以找到，返回OK，否则，返回ERROR。
  */
 Status GetHead(SqQueue Q, QElemType* e) {
-    // ���пյı�־
+    // 队列空的标志
     if(Q.base == NULL || Q.front == Q.rear) {
         return ERROR;
     }
@@ -112,57 +112,57 @@ Status GetHead(SqQueue Q, QElemType* e) {
 }
 
 /*
- * ���
+ * 入队
  *
- * ��Ԫ��e���ӵ�����β����
+ * 将元素e添加到队列尾部。
  */
 Status EnQueue(SqQueue* Q, QElemType e) {
     if(Q == NULL || (*Q).base == NULL) {
         return ERROR;
     }
     
-    // �������ı�־�����˷�һ���ռ������ֶ��пպͶ�������
+    // 队列满的标志（会浪费一个空间来区分队列空和队列满）
     if(((*Q).rear + 1) % MAXQSIZE == (*Q).front) {
         return ERROR;
     }
     
-    // ���
-        //�������
+    // 入队
+        //补充代码
     
-    // βָ��ǰ��
-        //�������
+    // 尾指针前进
+        //补充代码
     
     return OK;
 }
 
 /*
- * ����
+ * 出队
  *
- * �Ƴ�����ͷ����Ԫ�أ�����洢��e�С�
+ * 移除队列头部的元素，将其存储到e中。
  */
 Status DeQueue(SqQueue* Q, QElemType* e) {
     if(Q == NULL || (*Q).base == NULL) {
         return ERROR;
     }
     
-    // ���пյı�־
+    // 队列空的标志
     if((*Q).front == (*Q).rear) {
         return ERROR;
     }
     
-    // ����
-    //�������
+    // 出队
+    //补充代码
     
-    // ͷָ��ǰ��
-       //�������
+    // 头指针前进
+       //补充代码
     
     return OK;
 }
 
 /*
- * ����
+ * 遍历
  *
- * ��visit�������ʶ���Q
+ * 用visit函数访问队列Q
  */
 Status QueueTraverse(SqQueue Q, void(Visit)(QElemType)) {
     int i;

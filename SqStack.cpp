@@ -1,27 +1,27 @@
 /*=========================
- * Õ»µÄË³Ğò´æ´¢½á¹¹£¨Ë³ĞòÕ»£©
+ * æ ˆçš„é¡ºåºå­˜å‚¨ç»“æ„ï¼ˆé¡ºåºæ ˆï¼‰
  ==========================*/
 
-#include "SqStack.h"    //**¡ø03 Õ»ºÍ¶ÓÁĞ**//
+#include "SqStack.h"    //**â–²03 æ ˆå’Œé˜Ÿåˆ—**//
 
 /*
- * ³õÊ¼»¯
+ * åˆå§‹åŒ–
  *
- * ¹¹ÔìÒ»¸ö¿ÕÕ»¡£³õÊ¼»¯³É¹¦Ôò·µ»ØOK£¬·ñÔò·µ»ØERROR¡£
+ * æ„é€ ä¸€ä¸ªç©ºæ ˆã€‚åˆå§‹åŒ–æˆåŠŸåˆ™è¿”å›OKï¼Œå¦åˆ™è¿”å›ERRORã€‚
  */
 Status InitStack(SqStack* S) {
     if(S == NULL) {
         return ERROR;
     }
     
-    //²¹³ä´úÂë    
+    //è¡¥å……ä»£ç     
     return OK;
 }
 
 /*
- * Ïú»Ù(½á¹¹)
+ * é”€æ¯(ç»“æ„)
  *
- * ÊÍ·ÅË³ĞòÕ»ËùÕ¼ÄÚ´æ¡£
+ * é‡Šæ”¾é¡ºåºæ ˆæ‰€å å†…å­˜ã€‚
  */
 Status DestroyStack(SqStack* S) {
     if(S == NULL) {
@@ -38,9 +38,9 @@ Status DestroyStack(SqStack* S) {
 }
 
 /*
- * ÖÃ¿Õ(ÄÚÈİ)
+ * ç½®ç©º(å†…å®¹)
  *
- * Ö»ÊÇÇåÀíË³ĞòÕ»ÖĞ´æ´¢µÄÊı¾İ£¬²»ÊÍ·ÅË³ĞòÕ»ËùÕ¼ÄÚ´æ¡£
+ * åªæ˜¯æ¸…ç†é¡ºåºæ ˆä¸­å­˜å‚¨çš„æ•°æ®ï¼Œä¸é‡Šæ”¾é¡ºåºæ ˆæ‰€å å†…å­˜ã€‚
  */
 Status ClearStack(SqStack* S) {
     if(S == NULL || (*S).base == NULL) {
@@ -53,13 +53,13 @@ Status ClearStack(SqStack* S) {
 }
 
 /*
- * ÅĞ¿Õ
+ * åˆ¤ç©º
  *
- * ÅĞ¶ÏË³ĞòÕ»ÖĞÊÇ·ñ°üº¬ÓĞĞ§Êı¾İ¡£
+ * åˆ¤æ–­é¡ºåºæ ˆä¸­æ˜¯å¦åŒ…å«æœ‰æ•ˆæ•°æ®ã€‚
  *
- * ·µ»ØÖµ£º
- * TRUE : Ë³ĞòÕ»Îª¿Õ
- * FALSE: Ë³ĞòÕ»²»Îª¿Õ
+ * è¿”å›å€¼ï¼š
+ * TRUE : é¡ºåºæ ˆä¸ºç©º
+ * FALSE: é¡ºåºæ ˆä¸ä¸ºç©º
  */
 Status StackEmpty(SqStack S) {
     if(S.top == S.base) {
@@ -70,65 +70,65 @@ Status StackEmpty(SqStack S) {
 }
 
 /*
- * ¼ÆÊı
+ * è®¡æ•°
  *
- * ·µ»ØË³ĞòÕ»°üº¬µÄÓĞĞ§ÔªËØµÄÊıÁ¿¡£
+ * è¿”å›é¡ºåºæ ˆåŒ…å«çš„æœ‰æ•ˆå…ƒç´ çš„æ•°é‡ã€‚
  */
 int StackLength(SqStack S) {
     if(S.base == NULL) {
         return 0;
     }
     
-    //²¹³ä´úÂë
+    //è¡¥å……ä»£ç 
 }
 
 /*
- * È¡Öµ
+ * å–å€¼
  *
- * ·µ»ØÕ»¶¥ÔªËØ£¬²¢ÓÃe½ÓÊÕ¡£
+ * è¿”å›æ ˆé¡¶å…ƒç´ ï¼Œå¹¶ç”¨eæ¥æ”¶ã€‚
  */
 Status GetTop(SqStack S, SElemType* e) {
     if(S.base == NULL || S.top == S.base) {
         return 0;
     }
     
-    // ²»»á¸Ä±äÕ»ÖĞÔªËØ
-     //²¹³ä´úÂë
+    // ä¸ä¼šæ”¹å˜æ ˆä¸­å…ƒç´ 
+     //è¡¥å……ä»£ç 
     
     return OK;
 }
 
 /*
- * ÈëÕ»
+ * å…¥æ ˆ
  *
- * ½«ÔªËØeÑ¹Èëµ½Õ»¶¥¡£
+ * å°†å…ƒç´ eå‹å…¥åˆ°æ ˆé¡¶ã€‚
  */
 Status Push(SqStack* S, SElemType e) {
     if(S == NULL || (*S).base == NULL) {
         return ERROR;
     }
     
-    // Õ»ÂúÊ±£¬×·¼Ó´æ´¢¿Õ¼ä
+    // æ ˆæ»¡æ—¶ï¼Œè¿½åŠ å­˜å‚¨ç©ºé—´
     if((*S).top - (*S).base >= (*S).stacksize) {
         (*S).base = (SElemType*) realloc((*S).base, ((*S).stacksize + STACKINCREMENT) * sizeof(SElemType));
         if((*S).base == NULL) {
-            exit(OVERFLOW);     // ´æ´¢·ÖÅäÊ§°Ü
+            exit(OVERFLOW);     // å­˜å‚¨åˆ†é…å¤±è´¥
         }
         
         (*S).top = (*S).base + (*S).stacksize;
         (*S).stacksize += STACKINCREMENT;
     }
     
-    // ½øÕ»ÏÈ¸³Öµ£¬Õ»¶¥Ö¸ÕëÔÙ×ÔÔö
-     //²¹³ä´úÂë
+    // è¿›æ ˆå…ˆèµ‹å€¼ï¼Œæ ˆé¡¶æŒ‡é’ˆå†è‡ªå¢
+     //è¡¥å……ä»£ç 
     
     return OK;
 }
 
 /*
- * ³öÕ»
+ * å‡ºæ ˆ
  *
- * ½«Õ»¶¥ÔªËØµ¯³ö£¬²¢ÓÃe½ÓÊÕ¡£
+ * å°†æ ˆé¡¶å…ƒç´ å¼¹å‡ºï¼Œå¹¶ç”¨eæ¥æ”¶ã€‚
  */
 Status Pop(SqStack* S, SElemType* e) {
     if(S == NULL || (*S).base == NULL) {
@@ -139,16 +139,16 @@ Status Pop(SqStack* S, SElemType* e) {
         return ERROR;
     }
     
-    // ³öÕ»Õ»¶¥Ö¸ÕëÏÈµİ¼õ£¬ÔÙ¸³Öµ
-     //²¹³ä´úÂë
+    // å‡ºæ ˆæ ˆé¡¶æŒ‡é’ˆå…ˆé€’å‡ï¼Œå†èµ‹å€¼
+     //è¡¥å……ä»£ç 
     
     return OK;
 }
 
 /*
- * ±éÀú
+ * éå†
  *
- * ÓÃvisitº¯Êı·ÃÎÊË³ĞòÕ»S
+ * ç”¨visitå‡½æ•°è®¿é—®é¡ºåºæ ˆS
  */
 Status StackTraverse(SqStack S, void(Visit)(SElemType)) {
 	SElemType* p = S.base;
