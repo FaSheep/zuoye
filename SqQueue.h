@@ -20,76 +20,12 @@ typedef struct {
 } SqQueue;
 
 
-/*
- * 初始化
- *
- * 构造一个空的顺序队列。
- * 初始化成功则返回OK，否则返回ERROR。
- *
- *【注】
- * 这里的队列是循环队列
- */
-Status InitQueue(SqQueue* Q);
-
-/*
- * 销毁(结构)
- *
- * 释放循环顺序队列所占内存。
- */
-Status DestroyQueue(SqQueue* Q);
-
-/*
- * 置空(内容)
- *
- * 只是清理循环顺序队列中存储的数据，不释放顺序队列所占内存。
- */
-Status ClearQueue(SqQueue* Q);
-
-/*
- * 判空
- *
- * 判断循环顺序队列中是否包含有效数据。
- *
- * 返回值：
- * TRUE : 循环顺序队列为空
- * FALSE: 循环顺序队列不为空
- */
-Status QueueEmpty(SqQueue Q);
-
-/*
- * 计数
- *
- * 返回循环顺序队列包含的有效元素的数量。
- */
-int QueueLength(SqQueue Q);
-
-/*
- * 取值
- *
- * 获取队头元素，将其存储到e中。
- * 如果可以找到，返回OK，否则，返回ERROR。
- */
-Status GetHead(SqQueue Q, QElemType* e);
-
-/*
- * 入队
- *
- * 将元素e添加到队列尾部。
- */
-Status EnQueue(SqQueue* Q, QElemType e);
-
-/*
- * 出队
- *
- * 移除队列头部的元素，将其存储到e中。
- */
-Status DeQueue(SqQueue* Q, QElemType* e);
-
-/*
- * 遍历
- *
- * 用visit函数访问队列Q
- */
-Status QueueTraverse(SqQueue Q, void(Visit)(QElemType));
-
-
+Status SqInitQueue(SqQueue* Q);
+Status SqDestroyQueue(SqQueue* Q);
+Status SqClearQueue(SqQueue* Q);
+Status SqQueueEmpty(SqQueue Q);
+int SqQueueLength(SqQueue Q);
+Status SqGetHead(SqQueue Q, QElemType* e);
+Status SqEnQueue(SqQueue* Q, QElemType e);
+Status SqDeQueue(SqQueue* Q, QElemType* e);
+Status SqQueueTraverse(SqQueue Q, void(Visit)(QElemType));

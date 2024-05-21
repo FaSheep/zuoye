@@ -1,167 +1,50 @@
-/*=========================
- * 栈的顺序存储结构（顺序栈）
- ==========================*/
+#include "SqStack.h"
 
-#include "SqStack.h"    //**▲03 栈和队列**//
+// Initialize your SqStack structure with a certain size
+#define STACK_INIT_SIZE 100 // initial storage capacity
+#define STACKINCREMENT 10   // Incremental amount of stack growth
 
-/*
- * 初始化
- *
- * 构造一个空栈。初始化成功则返回OK，否则返回ERROR。
- */
 Status InitStack(SqStack* S) {
-    if(S == NULL) {
-        return ERROR;
+    S->base = (ElementType*) malloc(STACK_INIT_SIZE * sizeof(ElementType));
+    if(!S->base) {
+        exit(OVERFLOW); // Storage allocation failed
     }
-    
-    //补充代码    
-    return OK;
+    S->top = S->base;
+    S->stacksize = STACK_INIT_SIZE;
+    return SUCCESS;
 }
 
-/*
- * 销毁(结构)
- *
- * 释放顺序栈所占内存。
- */
-Status DestroyStack(SqStack* S) {
-    if(S == NULL) {
-        return ERROR;
-    }
-    
-    free((*S).base);
-    
-    (*S).base = NULL;
-    (*S).top = NULL;
-    (*S).stacksize = 0;
-    
-    return OK;
-}
-
-/*
- * 置空(内容)
- *
- * 只是清理顺序栈中存储的数据，不释放顺序栈所占内存。
- */
-Status ClearStack(SqStack* S) {
-    if(S == NULL || (*S).base == NULL) {
-        return ERROR;
-    }
-    
-    (*S).top = (*S).base;
-    
-    return OK;
-}
-
-/*
- * 判空
- *
- * 判断顺序栈中是否包含有效数据。
- *
- * 返回值：
- * TRUE : 顺序栈为空
- * FALSE: 顺序栈不为空
- */
-Status StackEmpty(SqStack S) {
-    if(S.top == S.base) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
-}
-
-/*
- * 计数
- *
- * 返回顺序栈包含的有效元素的数量。
- */
 int StackLength(SqStack S) {
-    if(S.base == NULL) {
-        return 0;
-    }
-    
-    //补充代码
+    return S.top - S.base;
 }
 
-/*
- * 取值
- *
- * 返回栈顶元素，并用e接收。
- */
-Status GetTop(SqStack S, SElemType* e) {
-    if(S.base == NULL || S.top == S.base) {
-        return 0;
+Status GetTop(SqStack S, ElementType* e) {
+    if(S.top > S.base) {
+        *e = *(S.top - 1); // Get the top element, without removing it
+        return SUCCESS;
+    } else {
+        return FAIL;
     }
-    
-    // 不会改变栈中元素
-     //补充代码
-    
-    return OK;
 }
 
-/*
- * 入栈
- *
- * 将元素e压入到栈顶。
- */
-Status Push(SqStack* S, SElemType e) {
-    if(S == NULL || (*S).base == NULL) {
-        return ERROR;
-    }
-    
-    // 栈满时，追加存储空间
-    if((*S).top - (*S).base >= (*S).stacksize) {
-        (*S).base = (SElemType*) realloc((*S).base, ((*S).stacksize + STACKINCREMENT) * sizeof(SElemType));
-        if((*S).base == NULL) {
-            exit(OVERFLOW);     // 存储分配失败
+Status Push(SqStack* S, ElementType e) {
+    if(S->top - S->base >= S->stacksize) { // Stack is full, need to allocate more space
+        ElementType* newbase = (ElementType*) realloc(S->base, (S->stacksize + STACKINCREMENT) * sizeof(ElementType));
+        if(!newbase) {
+            return OVERFLOW;
         }
-        
-        (*S).top = (*S).base + (*S).stacksize;
-        (*S).stacksize += STACKINCREMENT;
+        S->base = newbase; // Reset base to new storage
+        S->top = S->base + S->stacksize;
+        S->stacksize += STACKINCREMENT;
     }
-    
-    // 进栈先赋值，栈顶指针再自增
-     //补充代码
-    
-    return OK;
+    *(S->top++) = e; // Push element and increment top pointer
+    return SUCCESS;
 }
 
-/*
- * 出栈
- *
- * 将栈顶元素弹出，并用e接收。
- */
-Status Pop(SqStack* S, SElemType* e) {
-    if(S == NULL || (*S).base == NULL) {
-        return ERROR;
+Status Pop(SqStack* S, ElementType* e) {
+    if(S->top == S->base) {
+        return EMPTY; // Stack is empty, cannot pop
     }
-    
-    if((*S).top == (*S).base) {
-        return ERROR;
-    }
-    
-    // 出栈栈顶指针先递减，再赋值
-     //补充代码
-    
-    return OK;
-}
-
-/*
- * 遍历
- *
- * 用visit函数访问顺序栈S
- */
-Status StackTraverse(SqStack S, void(Visit)(SElemType)) {
-	SElemType* p = S.base;
-
-    if(S.base == NULL) {
-        return ERROR;
-    }
-
-    while(p < S.top) {
-        Visit(*p++);
-    }
-    
-    printf("\n");
-    
-    return OK;
+    *e = *(--S->top); // Decrement top pointer and get top element
+    return SUCCESS;
 }

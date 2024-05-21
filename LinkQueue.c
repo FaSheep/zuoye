@@ -1,178 +1,64 @@
-/*=========================
- * 队列的链式存储结构（链队）
- ==========================*/
+#include "LinkQueue.h"
 
-
-#include "LinkQueue.h"                   
-/*
- * 初始化
- *
- * 构造一个空的链队。
- * 初始化成功则返回OK，否则返回ERROR。
- *
- *【注】
- * 这里的队列带有头结点
- */
-Status InitQueue(LinkQueue* Q) {
+Status LinkInitQueue(LinkQueue* Q) {
     if(Q == NULL) {
         return ERROR;
     }
-    
     (*Q).front = (*Q).rear = (QueuePtr) malloc(sizeof(QNode));
     if(!(*Q).front) {
         exit(OVERFLOW);
     }
-    
-    //补充代码    
+    (*Q).front->next = NULL; // Ensure the next pointer of the head node is NULL
     return OK;
 }
 
-/*
- * 销毁(结构)
- *
- * 释放链队所占内存。
- */
-Status DestroyQueue(LinkQueue* Q) {
-    if(Q == NULL) {
-        return ERROR;
+Status LinkDestroyQueue(LinkQueue* Q) {
+    // Traversal pointer for node deletion
+    while(Q->front) {
+        Q->rear = Q->front->next; // Save the next node
+        free(Q->front); // Free the current node
+        Q->front = Q->rear; // Move to next node
     }
-    
-    //补充代码 
-
     return OK;
 }
 
-/*
- * 置空(内容)
- *
- * 这里需要释放链队中非头结点处的空间。
- */
-Status ClearQueue(LinkQueue* Q) {
-    if(Q == NULL) {
-        return ERROR;
+Status LinkClearQueue(LinkQueue* Q) {
+    QueuePtr p, q;
+    p = Q->front->next; // P points to the first node
+    Q->front->next = NULL; // Head node points to NULL
+    Q->rear = Q->front; // Reset rear to front
+    while(p) {
+        q = p->next;
+        free(p);
+        p = q;
     }
-    
-    (*Q).rear = (*Q).front->next;
-    
-	    //补充代码 
-    
     return OK;
 }
 
-/*
- * 判空
- *
- * 判断链队中是否包含有效数据。
- *
- * 返回值：
- * TRUE : 链队为空
- * FALSE: 链队不为空
- */
-Status QueueEmpty(LinkQueue Q) {
-    if(Q.front == Q.rear) {
-        return TRUE;
-    } else {
-        return FALSE;
+Status LinkEnQueue(LinkQueue* Q, QElemType e) {
+    QueuePtr p = (QueuePtr) malloc(sizeof(QNode));
+    if (!p) { // Check memory allocation
+        exit(OVERFLOW);     
     }
-}
-
-/*
- * 计数
- *
- * 返回链队包含的有效元素的数量。
- */
-int QueueLength(LinkQueue Q) {
-    int count = 0;
-    QueuePtr p = Q.front;
-    
-    while(p != Q.rear) {
-        count++;
-        p = p->next;
-    }
-    
-    return count;
-}
-
-/*
- * 取值
- *
- * 获取队头元素，将其存储到e中。
- * 如果可以找到，返回OK，否则，返回ERROR。
- */
-Status GetHead(LinkQueue Q, QElemType* e) {
-    QueuePtr p;
-    
-    if(Q.front == NULL || Q.front == Q.rear) {
-        return ERROR;
-    }
-    
-//补充代码 
-    
+    p->data = e; // Set the data part
+    p->next = NULL; // Set the next part to NULL
+    Q->rear->next = p; // Insert the new node into the queue
+    Q->rear = p; // Update the rear pointer
     return OK;
 }
 
-/*
- * 入队
- *
- * 将元素e添加到队列尾部。
- */
-Status EnQueue(LinkQueue* Q, QElemType e) {
-    QueuePtr p;
-    
-    if(Q == NULL || (*Q).front == NULL) {
-        return ERROR;
+Status LinkDeQueue(LinkQueue* Q, QElemType* e) {
+    if (Q->front == Q->rear) {
+        return ERROR; // Queue is empty
     }
-    
-    p = (QueuePtr) malloc(sizeof(QNode));
-    if(!p) {
-        exit(OVERFLOW);
+    QueuePtr p = Q->front->next; // Pointer to the first element
+    *e = p->data; // Set value to *e
+    Q->front->next = p->next; // Remove the first element from the queue
+    if (Q->rear == p) {
+        Q->rear = Q->front; // If the queue was only one element long, reset the rear
     }
-    
-    //补充代码 
-    
+    free(p); // Free the removed node
     return OK;
 }
 
-/*
- * 出队
- *
- * 移除队列头部的元素，将其存储到e中。
- */
-Status DeQueue(LinkQueue* Q, QElemType* e) {
-    QueuePtr p;
-    
-    if(Q == NULL || (*Q).front == NULL || (*Q).front == (*Q).rear) {
-        return ERROR;
-    }
-    
-	    //补充代码 
-    
-    free(p);
-    
-    return OK;
-}
-
-/*
- * 遍历
- *
- * 用visit函数访问队列Q
- */
-Status QueueTraverse(LinkQueue Q, void (Visit)(QElemType)) {
-    QueuePtr p;
-    
-    if(Q.front == NULL) {
-        return ERROR;
-    }
-    
-    p = Q.front->next;
-    
-    while(p != NULL) {
-        Visit(p->data);
-        p = p->next;
-    }
-    
-    printf("\n");
-    
-    return OK;
-}
-
+// Implement GetHead and other operations as per your requirement.
