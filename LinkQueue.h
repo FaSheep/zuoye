@@ -18,7 +18,7 @@ typedef struct QNode {
 
 // 队列结构
 typedef struct {
-    QueuePtr front;     // 队头指针
+    QueuePtr front;
     QueuePtr rear;      // 队尾指针
 } LinkQueue;            // 队列的链式存储表示
 
