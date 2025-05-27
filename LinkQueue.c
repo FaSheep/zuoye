@@ -12,6 +12,7 @@ Status LinkInitQueue(LinkQueue* Q) {
     return OK;
 }
 
+
 Status LinkDestroyQueue(LinkQueue* Q) {
     // Traversal pointer for node deletion
     while(Q->front) {
